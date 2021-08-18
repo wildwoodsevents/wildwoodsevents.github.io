@@ -1,0 +1,132 @@
+<html>
+  <head>
+    <title>Wild Woods Event Center</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <img src="img/wild-woods-logo-brown.svg" width="40%" />
+      <div class="blurb">
+        A secluded woodland paradise, nestled deep in the redwood forest.
+        At the edge of California's rugged Lost Coast, scenes
+        of lush wilderness invigorate and rejuvenate the soul.
+      </div>
+    </header>
+    <!--<div class="flex section one">
+      <div>
+        <img src="img/forest-with-fog.jpg" />
+      </div>
+      <div>
+        Experience a private woodland paradise, nestled deep in the redwood forest.
+        At the south end of California's rugged Lost Coast, where breathtaking views
+        and serene wilderness invigorate the soul, lies the perfect wilderness retreat.
+      </div>
+    </div>-->
+    <div class="flex section three">
+      <div>
+        <div class="heading">Facilities</div>
+        Fully off-grid. Solar power with backup generator. Clean well water. Outdoor redwood shower.
+        Wi-Fi. Indoor and outdoor kitchens. Fire pit. Shaded stage and dance floor. Professional sound system
+        and DJ equipment.
+      </div>
+      <div>
+        <img src="img/outdoor-kitchen.jpg" />
+      </div>
+    </div>
+    <div class="text section two">
+      <div>
+        <div class="heading">Events</div>
+        Parties, retreats, and weddings of up to 150 people. Camp beneath the stars, dance
+        the night away, and commune with nature - without sacrificing creature comforts and amenities!
+      </div>
+    </div>
+    <!--<div class="text section four">
+    </div>-->
+    <div class="gallery">
+      <div class="heading">Gallery</div>
+      <div id="gallery-images">
+        <div class="img-zoom"><img src="img/gallery/thumbs/backwoods-path-thumb.jpg" /></div>
+        <div class="img-zoom"><img src="img/gallery/thumbs/fire-pit-thumb.jpg" /></div>
+        <div class="img-zoom"><img src="img/gallery/thumbs/view-golden-hour-thumb.jpg" /></div>
+        <div class="img-zoom"><img src="img/gallery/thumbs/deck-couches-thumb.jpg" /></div>
+        <div class="img-zoom"><img src="img/gallery/thumbs/tent-deck-thumb.jpg" /></div>
+        <div class="img-zoom"><img src="img/gallery/thumbs/deck-planters-with-canna-thumb.jpg" /></div>
+        <div class="img-zoom"><img src="img/gallery/thumbs/summer-camp-group-photo-thumb.jpg" /></div>
+        <div class="img-zoom"><img src="img/gallery/thumbs/backwoods-camping-thumb.jpg" /></div>
+        <div class="img-zoom"><img src="img/gallery/thumbs/yoga-deck-thumb.jpg" /></div>
+        <div class="img-zoom"><img src="img/gallery/thumbs/warehouse-from-below-thumb.jpg" /></div>
+        <div class="img-zoom"><img src="img/gallery/thumbs/terraces-thumb.jpg" /></div>
+        <div class="img-zoom"><img src="img/gallery/thumbs/planter-many-flowers-thumb.jpg" /></div>
+        <div class="img-zoom"><img src="img/gallery/thumbs/swallowtail-on-flower-thumb.jpg" /></div>
+        <div class="img-zoom"><img src="img/gallery/thumbs/rhodies-thumb.jpg" /></div>
+        <div class="img-zoom"><img src="img/gallery/thumbs/ammo-bins-thumb.jpg" /></div>
+      </div>
+    </div>
+    <div class="text section six">
+      <div>
+        <div class="heading">Contact</div>
+        We'd love to hear about your event! Send us a message with some of the details, and we'll get back to you ASAP!
+        <div class="contact"><a href="mailto:info@wildwoodsevents.com">info@wildwoodsevents.com</a></div>
+        <div class="contact">(707) 714-1060<br /></div>
+        <div class="contact">
+          <a href="https://www.google.com/maps/place/55000+CA-1,+Leggett,+CA+95585/@39.820783,-123.7871217,17z">
+            55000 CA-1 Leggett, CA 95585
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <img src="img/wild-woods-logo-brown.svg" width="20%" />
+    </div>
+
+    <div id="lightbox" onclick="clickLightbox(event)">
+      <div id="lightbox-close" onclick="closeLightbox()">
+        x
+      </div>
+      <div id="lightbox-content">
+        <div id="lightbox-prev" onclick="changeSlide(-1)">❮</div>
+        <img id="lightbox-image" />
+        <div id="lightbox-next" onclick="changeSlide(1)">❯</div>
+      </div>
+    </div>
+
+    <script>
+      let lightboxSlide = 0;
+      let numSlides = document.getElementById('gallery-images').children.length;
+      console.log(numSlides);
+      [...document.getElementById('gallery-images').children].forEach(
+        (c, i) => c.onclick = e => openLightbox(e, i)
+      );
+      document.addEventListener('keydown', e => e.code === 'Escape' ? closeLightbox() : '');
+
+      function openLightbox(e, i) {
+        lightboxSlide = i;
+        document.getElementById('lightbox').style.display = 'block';
+        document.getElementById('lightbox-image').src = getFullSizeSrc(e.target);
+      }
+
+      function closeLightbox() {
+        document.getElementById('lightbox').style.display = 'none';
+      }
+
+      function clickLightbox(e) {
+        console.log(e.target);
+        if (e.target === document.getElementById('lightbox-content')) {
+          closeLightbox();
+        }
+      }
+
+      function changeSlide(offset) {
+        lightboxSlide = (lightboxSlide + offset) % numSlides;
+        if (lightboxSlide < 0) {
+          lightboxSlide += numSlides;
+        }
+        let thumb = document.getElementById('gallery-images').children[lightboxSlide].children[0];
+        document.getElementById('lightbox-image').src = getFullSizeSrc(thumb);
+      }
+      function getFullSizeSrc(thumb) {
+        return thumb.src.replace('/thumbs', '').replace('-thumb', '');;
+      }
+    </script>
+  </body>
+</html>

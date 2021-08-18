@@ -1,2 +1,2 @@
-# wildwoodsevents.github.io
+# wildwoods
 website
